@@ -1,0 +1,38 @@
+name: Tests
+
+on:
+  pull_request:
+    branches:
+      - '**'
+
+env:
+  FOUNDRY_PROFILE: ci
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      NODE_VERSION: 18
+    strategy:
+      fail-fast: true
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          cache: npm
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install npm deps
+        run: npm ci
+
+      - name: Run tests
+        run: |
+          npm run test
+
+      - name: Run linting test
+        run: npm run lint

@@ -1,0 +1,35 @@
+{
+	"extends": [
+		"prettier",
+		"plugin:prettier/recommended",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended"
+	],
+	"parser": "@typescript-eslint/parser",
+	"plugins": ["@typescript-eslint", "unicorn", "import"],
+	"rules": {
+		"@typescript-eslint/no-unused-vars": [
+			"error",
+			{
+				"argsIgnorePattern": "^_"
+			}
+		],
+		"no-duplicate-imports": "off",
+		"@typescript-eslint/no-duplicate-imports": ["error"],
+		"new-cap": "off",
+		"unicorn/filename-case": [
+			"error",
+			{
+				"case": "kebabCase"
+			}
+		],
+		"prefer-reflect": "off",
+		"max-params": "off"
+	},
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
+	},
+	"ignorePatterns": ["src/abi", "lib", "dist", "test/test-addresses.json"]
+}
