@@ -1,6 +1,7 @@
 import decodeCallData, { decodeInputs, findMethodById, getMethodId, getSighash } from '../src/index'
 import { BigNumber } from '@ethersproject/bignumber'
-import abi2 from './abi2.json'
+import { arrayify } from '@ethersproject/bytes'
+import abi2 from './data/abi2.json'
 
 describe('getMethodId', () => {
 	const testValues = [{ input: 'mint(uint256,uint256)', output: '0x1b2ef1ca' }]
@@ -88,8 +89,20 @@ describe('decodeInputs', () => {
 })
 
 describe('findMethodById', () => {
-	test('should find method in abi', () => {
+	test('should find method in abi as string with prefix', () => {
 		const res = findMethodById('0x1b2ef1ca', abi2)
+
+		expect(res).toBeDefined()
+		expect(res?.name).toEqual('mint')
+	})
+	test('should find method in abi as string without prefix', () => {
+		const res = findMethodById('1b2ef1ca', abi2)
+
+		expect(res).toBeDefined()
+		expect(res?.name).toEqual('mint')
+	})
+	test('should find method in abi as bytearray', () => {
+		const res = findMethodById(arrayify('0x1b2ef1ca'), abi2)
 
 		expect(res).toBeDefined()
 		expect(res?.name).toEqual('mint')
@@ -102,8 +115,29 @@ describe('findMethodById', () => {
 })
 
 describe('decodeCalldata', () => {
-	test('should decode call data', () => {
-		const res = decodeCallData('0x1b2ef1ca0000000000000000000000000000000000000000000000070c1cc73b00c800000000000000000000000000000000000000000000000001567fdd05cd25f80000', abi2)
+	test('should decode call data as prefixed string', () => {
+		const res = decodeCallData(
+			'0x1b2ef1ca0000000000000000000000000000000000000000000000070c1cc73b00c800000000000000000000000000000000000000000000000001567fdd05cd25f80000',
+			abi2
+		)
+
+		expect(res.method.name).toEqual('mint')
+	})
+	test('should decode call data as bytes array', () => {
+		const res = decodeCallData(
+			'1b2ef1ca0000000000000000000000000000000000000000000000070c1cc73b00c800000000000000000000000000000000000000000000000001567fdd05cd25f80000',
+			abi2
+		)
+
+		expect(res.method.name).toEqual('mint')
+	})
+	test('should decode call data as string without prefix', () => {
+		const res = decodeCallData(
+			arrayify(
+				'0x1b2ef1ca0000000000000000000000000000000000000000000000070c1cc73b00c800000000000000000000000000000000000000000000000001567fdd05cd25f80000'
+			),
+			abi2
+		)
 
 		expect(res.method.name).toEqual('mint')
 	})
