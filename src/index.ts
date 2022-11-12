@@ -8,9 +8,10 @@ import {
 import { keccak256 } from '@ethersproject/keccak256'
 import { toUtf8Bytes } from '@ethersproject/strings'
 import { type BytesLike, hexlify } from '@ethersproject/bytes'
+import { addHexPrefix } from './utils'
 
 export function splitCallData(calldata: BytesLike): [string, string] {
-	const cd = hexlify(calldata)
+	const cd = typeof calldata === 'string' ? addHexPrefix(calldata) : hexlify(calldata)
 
 	return [cd.substring(0, 10), `0x${cd.substring(10)}`]
 }
@@ -36,10 +37,8 @@ export function getSighash(abiFragment: string | Fragment | JsonFragment): strin
 }
 
 export function findMethodById(methodId: BytesLike, abi: JsonFragment[]): JsonFragment | undefined {
-  const mId = typeof methodId === 'string' ? methodId : hexlify(methodId)
-	return abi
-		.filter((a) => a.type === 'function')
-		.find((a) => getMethodId(getSighash(a)) === mId)
+	const mId = typeof methodId === 'string' ? addHexPrefix(methodId) : hexlify(methodId)
+	return abi.filter((a) => a.type === 'function').find((a) => getMethodId(getSighash(a)) === mId)
 }
 
 export function decodeCallData(calldata: BytesLike, abi: JsonFragment[], loose?: boolean) {
