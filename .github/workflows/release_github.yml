@@ -5,7 +5,7 @@ name: Release Github
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   release-please:
