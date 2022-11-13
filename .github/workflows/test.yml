@@ -36,3 +36,6 @@ jobs:
 
       - name: Run linting test
         run: npm run lint
+
+      - name: Run dependency check
+        run: npm run depcheck
