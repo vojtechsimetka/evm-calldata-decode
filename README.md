@@ -1,6 +1,6 @@
 # evm-calldata-decode
 
-[![Tests](https://github.com/vojtechsimetka/evm-calldata-decode/actions/workflows/test.yaml/badge.svg)](https://github.com/vojtechsimetka/evm-calldata-decode/actions/workflows/test.yaml)
+[![Tests](https://github.com/vojtechsimetka/evm-calldata-decode/actions/workflows/test.yml/badge.svg)](https://github.com/vojtechsimetka/evm-calldata-decode/actions/workflows/test.yml)
 [![](https://img.shields.io/badge/made%20by-Vojtech%20Simetka-blue.svg?style=flat-square)](https://simetka.cz/)
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/feross/standard)
@@ -16,11 +16,12 @@
 
 - [Install](#install)
 - [Usage](#usage)
+  - [Decode calldata with ABI](#decode-calldata-with-abi)
+  - [Decode calldate with online smart contract validator](#decode-calldate-with-online-smart-contract-validator)
+  - [Decode calldata with EVM signature database](#decode-calldata-with-evm-signature-database)
 - [License](#license)
 
 ## Install
-
-### npm
 
 ```sh
 npm install evm-calldata-decode --save
@@ -40,7 +41,7 @@ const abi = '[{"inputs": [...],"name": "mint","type": "function", ...}, ...]'
 decodeCallDataWithSignatureDB(calldata, abi)
 ```
 
-### Decode calldate with online validator
+### Decode calldate with online smart contract validator
 
 **NOT IMPLEMENTED YET**
 
