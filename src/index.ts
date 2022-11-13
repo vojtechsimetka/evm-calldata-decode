@@ -1,3 +1,4 @@
+import fetch from 'node-fetch'
 import {
 	defaultAbiCoder,
 	FormatTypes,
@@ -51,6 +52,45 @@ export function decodeCallData(calldata: BytesLike, abi: JsonFragment[], loose?:
 		method: Fragment.from(method),
 		inputs
 	}
+}
+
+interface EthdbResult {
+	bytes_signature: string
+	created_at: string
+	hex_signature: string
+	id: number
+	text_signature: string
+}
+
+interface EthdbResponse {
+	count: number
+	next: null
+	previous: null
+	results: EthdbResult[]
+}
+
+export async function retrieveMethodFromDB(sighash: BytesLike): Promise<string | undefined> {
+	const sh = typeof sighash === 'string' ? addHexPrefix(sighash) : hexlify(sighash)
+
+	const response = await fetch(
+		`https://www.4byte.directory/api/v1/signatures/?hex_signature=${sh}`,
+		{
+			method: 'GET',
+			headers: {
+				Accept: 'application/json'
+			}
+		}
+	)
+
+	if (!response.ok) {
+		throw new Error(`Error! status: ${response.status}`)
+	}
+
+	const result = (await response.json()) as EthdbResponse
+
+	console.log('result is: ', JSON.stringify(result, null, 4))
+
+	if (result.results[0]) return result.results[0].text_signature
 }
 
 export default decodeCallData

@@ -24,6 +24,7 @@
 		"@jest/types": "^29.3.1",
 		"@types/jest": "^29.2.2",
 		"@types/node": "^18.11.9",
+		"@types/node-fetch": "^2.6.2",
 		"@typescript-eslint/eslint-plugin": "^5.42.1",
 		"@typescript-eslint/parser": "^5.42.1",
 		"cross-env": "^7.0.3",
@@ -40,11 +41,12 @@
 		"ts-node": "^10.9.1"
 	},
 	"dependencies": {
-		"@ethersproject/abi": "*",
-		"@ethersproject/bignumber": "*",
-		"@ethersproject/bytes": "*",
-		"@ethersproject/keccak256": "*",
-		"@ethersproject/strings": "*"
+		"@ethersproject/abi": ">=5.0.0",
+		"@ethersproject/bignumber": ">=5.0.0",
+		"@ethersproject/bytes": ">=5.0.0",
+		"@ethersproject/keccak256": ">=5.0.0",
+		"@ethersproject/strings": ">=5.0.0",
+		"node-fetch": "^2.6.7"
 	},
 	"peerDependencies": {
 		"@ethersproject/abi": ">=5.0.0",

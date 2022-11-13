@@ -1,4 +1,10 @@
-import decodeCallData, { decodeInputs, findMethodById, getMethodId, getSighash } from '../src/index'
+import decodeCallData, {
+	decodeInputs,
+	findMethodById,
+	getMethodId,
+	getSighash,
+	retrieveMethodFromDB
+} from '../src/index'
 import { BigNumber } from '@ethersproject/bignumber'
 import { arrayify } from '@ethersproject/bytes'
 import abi2 from './data/abi2.json'
@@ -141,4 +147,15 @@ describe('decodeCalldata', () => {
 
 		expect(res.method.name).toEqual('mint')
 	})
+})
+
+describe('retrieveMethodFromDB', () => {
+	const testValues = [{ output: 'mint(uint256,uint256)', input: '0x1b2ef1ca' }]
+	testValues.forEach(async (tv) =>
+		test(`should retrieve ${tv.output} from ${tv.input}`, async () => {
+			const res = await retrieveMethodFromDB(tv.input)
+
+			expect(res).toEqual(tv.output)
+		})
+	)
 })
