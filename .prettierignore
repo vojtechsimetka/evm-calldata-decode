@@ -1,4 +1,2 @@
-src/abi
-lib
 dist
-test/test-addresses.json
+CHANGELOG.md

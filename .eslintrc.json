@@ -31,5 +31,5 @@
 			"version": "detect"
 		}
 	},
-	"ignorePatterns": ["src/abi", "lib", "dist", "test/test-addresses.json"]
+	"ignorePatterns": ["dist", "CHANGELOG.md"]
 }
