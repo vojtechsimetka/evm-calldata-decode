@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/vojtechsimetka/evm-calldata-decode/compare/v0.1.1...v0.1.2) (2022-11-13)
+
+
+### Bug Fixes
+
+* move [@ethersproject](https://github.com/ethersproject) to peerDependencies ([#25](https://github.com/vojtechsimetka/evm-calldata-decode/issues/25)) ([002e37b](https://github.com/vojtechsimetka/evm-calldata-decode/commit/002e37bb2c5da496a7178409eac01aaf4400ffc1))
+
 ## 0.1.1 (2022-11-13)
 
 
