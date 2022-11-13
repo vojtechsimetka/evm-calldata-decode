@@ -27,6 +27,8 @@
 npm install evm-calldata-decode --save
 ```
 
+The project also expects peer dependency `@ethersproject` or the individual modules `@ethersproject/abi, @ethersproject/bignumber, @ethersproject/bytes, @ethersproject/keccak256, @ethersproject/strings`
+
 ## Usage
 
 ```ts
