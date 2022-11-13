@@ -44,7 +44,8 @@
 		"@ethersproject/bignumber": "*",
 		"@ethersproject/bytes": "*",
 		"@ethersproject/keccak256": "*",
-		"@ethersproject/strings": "*"
+		"@ethersproject/strings": "*",
+		"node-fetch": "^2.6.7"
 	},
 	"peerDependencies": {
 		"@ethersproject/abi": ">=5.0.0",
